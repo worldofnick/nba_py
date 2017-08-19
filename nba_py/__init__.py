@@ -83,8 +83,9 @@ def _get_json(endpoint, params, referer='scores'):
     """
     h = dict(HEADERS)
     h['referer'] = 'http://stats.nba.com/{ref}/'.format(ref=referer)
+    proxies = {'http': PROXY, 'https': PROXY}
     _get = get(BASE_URL.format(endpoint=endpoint), params=params,
-               headers=h)
+               headers=h, proxies=proxies)
     # print _get.url
     _get.raise_for_status()
     return _get.json()
